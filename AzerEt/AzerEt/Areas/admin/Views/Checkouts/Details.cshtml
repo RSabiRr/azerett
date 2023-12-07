@@ -1,0 +1,206 @@
+﻿@model VmHome
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Ətraflı</h1>
+
+<div>
+    <h4>Sifariş</h4>
+    <hr />
+    <dl class="row">
+         <dt class = "col-sm-2">
+         Ad
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Checkout.CustomUser.Name)
+        </dd>
+        <dt class="col-sm-2">
+           Soyad
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Checkout.CustomUser.Surname)
+        </dd>
+        <dt class="col-sm-2">
+           Email
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Checkout.CustomUser.Email)
+        </dd>
+        <dt class="col-sm-2">
+           Qeydiyyat Nömrəsi
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Checkout.CustomUser.Phone)
+        </dd>
+        
+        <dt class = "col-sm-2">
+           Cinsiyyət
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Checkout.CustomUser.Gender)
+        </dd>
+        <dt class="col-sm-2">
+           Adres
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Checkout.Adress)
+        </dd>
+        <dt class = "col-sm-2">
+            Əlavə Məlumat
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Checkout.Information)
+        </dd>
+        <dt class = "col-sm-2">
+           Əlaqə Nömrəsi
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Checkout.ContactPhone)
+        </dd>
+        <dt class = "col-sm-2">
+            Ödəniş növü
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.Checkout.Iscart == true)
+            {
+                <p>Kart</p>
+            }
+            else
+            {
+                <p>Negd</p>
+
+            }
+        </dd>
+        <dt class="col-sm-2">
+            Ödəniş statusu
+        </dt>
+        <dd class="col-sm-10">
+          @if (Model.Checkout.Iscart==true)
+          {
+                    @if (Model.Checkout.Success == true)
+                    {
+                        <p style="color:green">Bəli</p>
+                    }
+                    else
+                    {
+                        <p style="color:red">Xeyr</p>
+
+                    }
+           }
+            else
+            {
+                    <p style="color:yellow">Negd</p>
+
+            }
+        </dd>
+        <dt class = "col-sm-2">
+           Ümumi məbləğ
+        </dt>
+        <dd class="col-sm-10  full-price">
+            @Html.DisplayFor(model => model.Checkout.TotalPrice)₼
+        </dd>
+   
+        <dt class = "col-sm-2">
+            Tarix
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Checkout.CreatedDate)
+        </dd>
+    </dl>
+
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Kategoriya 
+                </th>
+                <th>
+                    Menu(adı)
+                </th>
+                <th>
+                    Say
+                </th>
+                <th>
+                    Məlumat
+                </th>
+                <th>
+                     Qiymət
+                </th>
+                <th>
+                    Şəkil
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            @foreach (var item in Model.CheckWishlists)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Menu.Category.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Menu.Name)
+                    </td>
+                    <td >
+                            @Html.DisplayFor(modelItem => item.Count)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Menu.Title)
+                    </td>
+                    <td >
+                        @Html.DisplayFor(modelItem => item.Menu.Price)₼
+                    </td>
+                    
+                    <td>
+                        <img src="~/UploadsImage/@item.Menu.Image" alt="Alternate Text" style="max-width:100px; max-height:100px" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+        
+    
+</div>
+@if (Model.Checkout.isTrue==false)
+{
+
+    <div class="d-flex">
+        <form asp-controller="Checkouts" asp-action="Edit" method="post">
+            <input type="hidden" asp-for="@Model.Checkout.Id" value="@Model.Checkout.Id" />
+            <input type="hidden" asp-for="@Model.Checkout.CustomUser.Email" value="@Model.Checkout.CustomUser.Email" />
+            <input type="submit" value="Tesdiqle" class="btn btn-success" /> |
+            <a class="btn btn-danger" asp-action="Index">Geri qayit</a>
+        </form>
+        <div class="d-flex ms-5">
+
+            <i style=" font-size: 20px;color: green;" class="bi bi-whatsapp d-flex align-items-center"><span style=" margin-left: 10px;"><a target="_blank" style="color:white" href="https://wa.me/@Model.Checkout.ContactPhone">@Model.Checkout.ContactPhone</a></span></i>
+
+
+
+            <i style="font-size: 20px; color: blue;" class="bi bi-phone d-flex align-items-center ms-4"><span style=" margin-left: 10px;"><a  style="color:white" href="tel:@Model.Checkout.ContactPhone">@Model.Checkout.ContactPhone</a></span></i>
+
+
+
+        </div>
+
+    </div>
+
+}
+else
+{
+    <a class="btn btn-danger" asp-action="Index2">Back to List</a>
+}
+
+
+
+
+
+

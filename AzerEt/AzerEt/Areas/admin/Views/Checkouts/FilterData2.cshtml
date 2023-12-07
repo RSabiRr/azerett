@@ -1,0 +1,22 @@
+﻿@model List<Checkout>
+@{
+    ViewData["Title"] = "FilterData";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+
+    double sum = 0;
+}
+@foreach (var item in Model)
+{
+    sum += item.TotalPrice;
+
+}
+<div class="mt-5" style="display: flex;
+    justify-content: center;
+    font-size: 22px;
+    text-align: center;">
+    <h3>Ümumi məbləğ:</h3><p style="color:red">@sum ₼ <span>🙂💸🤑</span></p>
+</div>

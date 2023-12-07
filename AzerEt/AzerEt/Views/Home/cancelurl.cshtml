@@ -1,0 +1,42 @@
+﻿@inject UserManager<IdentityUser> _userManager
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AzerƏt</title>
+    <link rel="icon" href="~/assets/img/logoo.jpeg.png"
+          type="image/x-icon">
+</head>
+<body>
+    <div class="main">
+        <h3>Uğursuz əməliyyat</h3>
+        <img style=" width: 300px;" src="/assets/img/cancel.png" />
+        <h4 style="color:white">Əsas səhifəyə <a asp-controller="home" asp-action="index">keçid</a></h4>
+
+    </div>
+
+</body>
+</html>
+<style>
+
+    body {
+        background-color: #1a1814;     
+    }
+
+ .main{
+     text-align:center;
+         margin-top: 70px;
+ }
+
+    .main h3 {
+        color:white;
+    }
+
+
+</style>
+

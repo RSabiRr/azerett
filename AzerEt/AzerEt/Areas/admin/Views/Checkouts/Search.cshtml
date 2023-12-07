@@ -1,0 +1,160 @@
+﻿@model VmHome
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+<form asp-controller="Checkouts" asp-action="Search" method="get">
+    <div style="margin-left: 10px;" class="header-search-wrapper search-wrapper-wide mt-3">
+        <div class="row">
+            <div class="col-lg-4">
+                <label for="q" class="sr-only">Search</label>
+                <input type="search" class="form-control" aria-label="Search" name="searchData" placeholder="Name ...">
+            </div>
+            <div class="col-lg-4">
+                <input type="search" class="form-control" aria-label="Search" name="email" placeholder="Email ...">
+            </div>
+            <div class="col-lg-4">
+                <button style="background:red" class="btn " type="submit"><i class="fas fa-search" style="color: white;"></i></button>
+
+            </div>
+
+
+
+
+        </div>
+
+
+    </div><!-- End .header-search-wrapper -->
+</form>
+
+<div style="    margin-top: 25px;" class="col-lg-12 mb-3">
+    <a asp-controller="Checkouts" asp-action="downloadtoexcel"><img src="~/assets/img/excel.png" alt="Alternate Text" width="50" /></a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Ad,Soyad
+            </th>
+            <th>
+                Email
+            </th>
+
+
+
+            <th>
+                Adres
+            </th>
+            <th>
+                Əlaqə nömrəsi
+            </th>
+
+
+
+            <th>
+                Ödəniş növü
+            </th>
+
+
+            <th>
+                Ödəniş statusu
+            </th>
+
+
+
+            <th>
+
+                Tarix
+            </th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.Checkouts)
+        {
+            <tr>
+                <td>
+                    @* @Html.DisplayFor(modelItem => item.CustomUser.Name,item.CustomUser.Surname) *@
+                    @item.CustomUser.Name @item.CustomUser.Surname
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomUser.Email)
+                </td>
+
+             
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adress)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactPhone)
+                </td>
+                <td>
+                    @if (item.Iscart == true)
+                    {
+                        <p>Kart</p>
+                    }
+                    else
+                    {
+                        <p>Negd</p>
+
+                    }
+                </td>
+                @if (item.Iscart == true)
+                {
+                    <td>
+                        @if (item.Success == true)
+                        {
+                            <p style="color:green">Bəli</p>
+                        }
+                        else
+                        {
+                            <p style="color:red">Xeyr</p>
+
+                        }
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <p style="color:yellow">Negd</p>
+                    </td>
+
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+
+                <td style="display:flex">
+                    <a class="btn btn-success" asp-action="Details" asp-route-userId="@item.UserId" asp-route-id="@item.Id">Ətraflı</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    var a = document.getElementById("foralert").textContent;
+    console.log(a);
+    window.setTimeout(
+
+        function () {
+            location.reload();
+            if (a > 0) {
+                const audio = new Audio();
+                audio.src = "../music/message.mp3";
+                audio.play();
+                alert("Diqqət! yeni sifariş var!")
+
+            }
+        },
+        40000);
+</script>

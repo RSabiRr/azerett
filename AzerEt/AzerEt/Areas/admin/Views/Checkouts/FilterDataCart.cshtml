@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewData["Title"] = "FilterDataCart";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+<form class="mt-5 ms-5" asp-controller="Checkouts" asp-action="FilterData" method="get">
+    <input name="startDate" type="date" />
+    <input name="endDate" type="date" />
+    <button style="background: green;
+    color: white;
+    width: 100px;
+    border: 1px solid green;
+    border-radius: 7px;
+    margin-left: 10px;" type="submit">
+        Axtar
+    </button>
+</form>
+

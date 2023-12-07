@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>
+    </EncryptedPassword>
+    <History>True|2023-12-06T15:44:28.8404177Z;True|2023-12-06T17:02:02.7241443+04:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="AzerEtCS">
+      <Value>Data Source=68.71.129.120,1533%3bInitial Catalog=azeretco_azeret%3bIntegrated Security=False%3bUser Id=azeretadmin%3bPassword=qorod123%40%3bEncrypt=True%3bMultipleActiveResultSets=True%3bTrustServerCertificate=True</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="AzerEt.Data.AppDbContext">
+      <Value>Data Source=68.71.129.120,1533%3bInitial Catalog=azeretco_azeret%3bIntegrated Security=False%3bUser Id=azeretadmin%3bPassword=qorod123%40%3bEncrypt=True%3bMultipleActiveResultSets=True%3bTrustServerCertificate=True</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>
